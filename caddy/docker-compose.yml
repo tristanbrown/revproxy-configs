@@ -6,8 +6,6 @@ services:
       - 80:80
       - 443:443
       - 8081:8081
-      - 8082:8082
-      - 8080:8080
     environment:
       - CADDY_INGRESS_NETWORKS=caddy
     networks:
@@ -22,7 +20,7 @@ services:
     networks:
       - caddy
     labels:
-      caddy: localhost:8081, turf:8081
+      caddy: localhost:8081, ${HOSTNAME}:8081
       caddy.reverse_proxy: "{{upstreams 80}}"
       caddy.tls: "internal"
 
